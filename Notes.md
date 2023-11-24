@@ -13,3 +13,9 @@ Parent -> Child -> Grandchild
 - inside the card we will call the onPlay() and pass the index also 
 - in onPlay => play(), then change the player("X" or "O") and then set the board to new board
 - in Icon also we decide which icon to display and display the required icon 
+
+Note
+- if the parent re-renders then the children components are bound to re-render
+
+1st step of Optimisation
+1. use `memo` and `profiler` to avoid re-rendering of stateless components

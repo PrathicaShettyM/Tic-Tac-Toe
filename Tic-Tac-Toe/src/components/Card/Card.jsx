@@ -1,12 +1,13 @@
 import Icon from '../Icons/Icon'
 import './Card.css'
+
+import { memo } from 'react'
 // when somebody click, we get another prop onPlay
 // onclick u need to change in Card.jsx
 // playMove is to find the current player, either 'X' or 'O'
 
 
-function Card({ onPlay, player, index }){
-
+function Card({ onPlay, player, index, gameEnd }){
 
     let icon = <Icon/>
     if(player == "X"){
@@ -16,10 +17,10 @@ function Card({ onPlay, player, index }){
     }
     
     return(
-        <div className='card' onClick={()=> onPlay(index) }>
+        <div className='card' onClick={()=> !gameEnd && player == "" && onPlay(index) }>
         {icon}
         </div>
     );
 }
 
-export default Card;
+export default memo(Card);

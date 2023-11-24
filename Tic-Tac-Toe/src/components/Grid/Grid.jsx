@@ -1,26 +1,10 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import Card from "../card/Card";
 import { ToastContainer, toast } from 'react-toastify';
+import isWinner from "../Check/check";
+
 import 'react-toastify/dist/ReactToastify.css';
 import './Grid.css'
-
-function isWinner(board, symbol){
-    console.log(board, symbol);
-    // row      
-    if(board[0] == board[1] && board[1] == board[2] && board[2] == symbol) return symbol;
-    if(board[3] == board[4] && board[4] == board[5] && board[5] == symbol) return symbol;
-    if(board[6] == board[7] && board[7] == board[8] && board[8] == symbol) return symbol;
-    //col 
-    if(board[0] == board[3] && board[3] == board[6] && board[6] == symbol) return symbol;
-    if(board[1] == board[4] && board[4] == board[7] && board[7] == symbol) return symbol;
-    if(board[2] == board[5] && board[5] == board[8] && board[8] == symbol) return symbol;
-    //diagonal
-    if(board[0] == board[4] && board[4] == board[8] && board[8] == symbol) return symbol;
-    if(board[2] == board[4] && board[4] == board[6] && board[6] == symbol) return symbol;
-
-    // if nobody is the winner return false
-    return "";
-}
 
 function Grid({ numberOfCards }){
 
@@ -28,7 +12,7 @@ function Grid({ numberOfCards }){
     const [board, setBoard] = useState(Array(numberOfCards).fill("")); // ["","","","","","","",""]
     const [winner, setWinner] = useState(null);
 
-    function play(index){
+    const play = useCallback(function playCallback(index){
         console.log("move played", index);
         if(turn == true){
             board[index] = "O";
@@ -40,11 +24,11 @@ function Grid({ numberOfCards }){
         console.log("Winner is: ", win);
         if(win){
             setWinner(win);
-            toast(`Congratulation !!! ${win} won the game`)
+            toast.success(`Congratulation !!! ${win} won the game`)
         }
         setBoard([...board]);
         setTurn(!turn);
-    }
+    }, [turn])
 
     function reset(){
         setBoard(Array(numberOfCards).fill(""));
@@ -64,7 +48,7 @@ function Grid({ numberOfCards }){
         <h1 className="turn-highlight">Current Turn: {(turn)? 'O' : 'X'}</h1>
         <div className="grid">
             {board.map((value, idx) => {
-            return <Card onPlay={play} player={value} key={idx} index={idx}/>
+            return <Card gameEnd={winner? true : false} onPlay={play} player={value} key={idx} index={idx}/>
             })}
         </div>
         </>
