@@ -1,3 +1,3 @@
 # Tic-tac-toe-ReactJS
-This is a good websie. The project
+This is a good websie. This project
 
