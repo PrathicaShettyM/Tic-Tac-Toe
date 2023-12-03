@@ -1,4 +1,4 @@
 # Tic-tac-toe-ReactJS
-This is a good websie. This repository contains a
+This is a good websie. This repository contains a tic
 
 
