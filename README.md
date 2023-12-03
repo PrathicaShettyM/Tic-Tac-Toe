@@ -1,4 +1,4 @@
 # Tic-tac-toe-ReactJS
-This is a good websie. Thanks for Sanket
+This is a good websie. Thanks for 
 
 
