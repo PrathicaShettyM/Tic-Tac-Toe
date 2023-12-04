@@ -1,4 +1,4 @@
 # Tic-tac-toe-ReactJS
-This is a good websie. This repository contains a tic-tac-toe app
+This repository contains a Tic-Tac-Toe Application built using ReactJS.
 
 
